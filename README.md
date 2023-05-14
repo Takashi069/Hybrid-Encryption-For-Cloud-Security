@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Hybrid Encryption For Cloud Security
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Setting it up
+1. Clone the repository
+2. `cd` into the repository and run the command `npm i` to install packages present in the package.json file
+3. run the command `npx json-server --watch ./src/data/keys.json --port 8000` to start the local JSON server that stores the keys
+4. run `nom start` to run a developmental server
 
-## Available Scripts
+This is what the intro screen should look like: 
+![image](https://github.com/Takashi069/Hybrid-Encryption-For-Cloud-Security/assets/73834506/c55a95a4-96a8-40e8-a338-019f22a7204e)
 
-In the project directory, you can run:
+## Running the application
+### Inputing data into the Firebase Server: 
+1. Click on the input button and fill in the plain text
+2. Press Fetch/Generate Keys to fetch encryption keys or create them if they are not present
+3. Your Public and Private Keys should be displayed.
+> **Warning** : Do not show private keys out during production. This is a test environment and no private data is being stored in firebase
+4. Then press Encrypt and Send, this will send the encrypted Data to Firebase ( Google's Cloud Service )
+5. Press Recieve and Decrypt if you want to recieve the latest data sent to firebase and decrypt it
 
-### `npm start`
+![image](https://github.com/Takashi069/Hybrid-Encryption-For-Cloud-Security/assets/73834506/2828c967-c839-4fc4-b5f8-0fd845a5c504)
+![image](https://github.com/Takashi069/Hybrid-Encryption-For-Cloud-Security/assets/73834506/6fea00c1-5fe1-4f74-a1ff-14a43bd933a3)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Fetching the data in Firebase
+To prove that the data in firebase in indeed encrypted, you can click on the Display Contents button in the homepage followed by the Get From Firebase button.
+![image](https://github.com/Takashi069/Hybrid-Encryption-For-Cloud-Security/assets/73834506/c73017b9-5b1e-4305-9058-557c96102c31)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<br />
+This fetches the data in firebase and you can see that it is encrypted. <br/>
+![image](https://github.com/Takashi069/Hybrid-Encryption-For-Cloud-Security/assets/73834506/92b7221a-4ec1-47ab-b757-88db574d6e93)
+<br />
+To decrypt the contents, just press the decrypt button and since you have the keys locally stored, it will decrypt the content for you.
+![image](https://github.com/Takashi069/Hybrid-Encryption-For-Cloud-Security/assets/73834506/6e553b7f-784f-43a7-abda-67dde77e8b2a)
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Hence this method allows data to be encrypted locally and sent to the server, thus preventing your data from being at the mercy of service provider. Moreover the locally hosted json server can be replaced with a password manager as well, but that's a topic for another project.
