@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import InputForm from './components/InputForm';
+import useFetch from './Hooks/useFetch';
+import DisplayDetails from './components/DisplayDetails';
+import Landing from './components/Landing';
+import HybridEncryptionDemo from './components/HybridEncyptionDemo';
 
 function App() {
+  const {data:encryptionKeys } = useFetch("http://localhost:8000/encryptionKeys")
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Landing/>}/>
+          <Route path='/InputForm' element={<HybridEncryptionDemo encryptionKeys={encryptionKeys}/>} />
+          <Route path='/DisplayDetails' element={<DisplayDetails encryptionKeys={encryptionKeys}/>} />
+          <Route path="/demo" element={<HybridEncryptionDemo/>} />
+        </Routes>
+      </Router>
     </div>
   );
 }
